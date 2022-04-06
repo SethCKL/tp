@@ -14,7 +14,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_POSITION_DISPLAYED_INDEX = "The position index provided is invalid";
     public static final String MESSAGE_INVALID_FLAG = "Flag is invalid!";
     public static final String MESSAGE_NO_FLAG = "No flag is found!";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_APPLICANTS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview already exists in the address book";
     public static final String MESSAGE_CONFLICTING_INTERVIEW = "This interview would cause a conflict of timings with"
             + " a current interview in the address book. Interviews must be "

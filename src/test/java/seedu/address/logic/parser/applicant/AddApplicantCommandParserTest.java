@@ -47,7 +47,6 @@ import seedu.address.model.applicant.Email;
 import seedu.address.model.applicant.Gender;
 import seedu.address.model.applicant.Name;
 import seedu.address.model.applicant.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ApplicantBuilder;
 
 public class AddApplicantCommandParserTest {
@@ -64,7 +63,7 @@ public class AddApplicantCommandParserTest {
                 new AddApplicantCommand(expectedApplicant));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser,NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
                         + EMAIL_DESC_BOB + AGE_DESC_BOB + ADDRESS_DESC_BOB + GENDER_DESC_BOB + TAG_DESC_FRIEND,
                 new AddApplicantCommand(expectedApplicant));
 
@@ -95,7 +94,7 @@ public class AddApplicantCommandParserTest {
 
         // multiple tags - all accepted
         Applicant expectedApplicantMultipleTags = new ApplicantBuilder(BOB)
-        .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+                                                    .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + AGE_DESC_BOB + ADDRESS_DESC_BOB + GENDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddApplicantCommand(expectedApplicantMultipleTags));
@@ -105,7 +104,7 @@ public class AddApplicantCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Applicant expectedApplicant = new ApplicantBuilder(AMY).withTags().build();
-        assertParseSuccess(parser,NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + AGE_DESC_AMY + ADDRESS_DESC_AMY + GENDER_DESC_AMY,
                 new AddApplicantCommand(expectedApplicant));
     }
