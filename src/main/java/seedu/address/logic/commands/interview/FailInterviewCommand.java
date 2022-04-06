@@ -21,6 +21,8 @@ public class FailInterviewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_FAIL_INTERVIEW_SUCCESS = "Failed Interview: %1$s";
+    public static final String MESSAGE_INTERVIEW_CANNOT_BE_FAILED = "The interview cannot be failed, "
+            + "because only pending interviews can be failed";
 
     private final Index targetIndex;
 
@@ -38,9 +40,8 @@ public class FailInterviewCommand extends Command {
         }
 
         Interview interviewToFail = lastShownList.get(targetIndex.getZeroBased());
-
         if (!interviewToFail.isFailableInterview()) {
-            throw new CommandException(Messages.MESSAGE_INTERVIEW_CANNOT_BE_FAILED);
+            throw new CommandException(MESSAGE_INTERVIEW_CANNOT_BE_FAILED);
         }
 
         Interview failedInterview = new Interview(interviewToFail.getApplicant(), interviewToFail.getDate(),

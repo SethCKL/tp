@@ -22,6 +22,7 @@ public class RejectInterviewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_REJECT_INTERVIEW_SUCCESS = "Rejected Interview: %1$s";
+    public static final String MESSAGE_INTERVIEW_CANNOT_BE_REJECTED = "Only passed interviews can be rejected!";
 
     private final Index targetIndex;
 
@@ -40,14 +41,12 @@ public class RejectInterviewCommand extends Command {
 
         Interview interviewToReject = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!model.isRejectableInterview(interviewToReject)) {
-            throw new CommandException(Messages.MESSAGE_INTERVIEW_CANNOT_BE_REJECTED);
+        if (!interviewToReject.isRejectableInterview()) {
+            throw new CommandException(MESSAGE_INTERVIEW_CANNOT_BE_REJECTED);
         }
 
-        // Should this be extracted out to a method
         Position oldPosition = interviewToReject.getPosition();
         Position newPosition = interviewToReject.getPosition().rejectOffer();
-
         Interview rejectedInterview = new Interview(interviewToReject.getApplicant(), interviewToReject.getDate(),
                 newPosition);
 

@@ -155,23 +155,6 @@ public class ModelManager implements Model {
         return addressBook.hasConflictingInterview(interview);
     }
 
-    @Override
-    public boolean isPassableInterview(Interview interview) {
-        requireAllNonNull(interview);
-        return addressBook.isPassableInterview(interview);
-    }
-
-    @Override
-    public boolean isAcceptableInterview(Interview interview) {
-        requireAllNonNull(interview);
-        return addressBook.isAcceptableInterview(interview);
-    }
-
-    @Override
-    public boolean isRejectableInterview(Interview interview) {
-        requireAllNonNull(interview);
-        return addressBook.isRejectableInterview(interview);
-    }
 
     @Override
     public void deleteInterview(Interview target) {

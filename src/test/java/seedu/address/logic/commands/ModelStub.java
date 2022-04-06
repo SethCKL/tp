@@ -167,40 +167,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean isPassableInterview(Interview interview) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean isAcceptableInterview(Interview interview) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean isRejectableInterview(Interview interview) {
-        throw new AssertionError("This method should not be called.");
-    }
-    //        @Override
-    //        public void passInterview(Interview interview) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void failInterview(Interview interview) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void acceptInterview(Interview interview) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void rejectInterview(Interview interview) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-
-    @Override
     public void setInterview(Interview target, Interview editedInterview) {
         throw new AssertionError("This method should not be called.");
     }

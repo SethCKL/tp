@@ -167,29 +167,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return interviews.containsConflict(i);
     }
 
-    /**
-     * Returns true if an interview is passable based on the number of extended offers and openings.
-     */
-    public boolean isPassableInterview(Interview i) {
-        requireNonNull(i);
-        return interviews.isPassableInterview(i);
-    }
-
-    /**
-     * Returns true if an interview is acceptable based on the status of the interview.
-     */
-    public boolean isAcceptableInterview(Interview i) {
-        requireNonNull(i);
-        return interviews.isAcceptableInterview(i);
-    }
-
-    /**
-     * Returns true if an interview is rejectable based on the status of the interview.
-     */
-    public boolean isRejectableInterview(Interview i) {
-        requireNonNull(i);
-        return interviews.isRejectableInterview(i);
-    }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.

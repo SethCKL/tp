@@ -22,6 +22,9 @@ public class PassInterviewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_PASS_INTERVIEW_SUCCESS = "Passed Interview: %1$s";
+    public static final String MESSAGE_INTERVIEW_CANNOT_BE_PASSED = "The interview cannot be passed, "
+            + "as the number of current offers will exceed the number of available positions or because only pending"
+            + " interviews can be passed";
 
     private final Index targetIndex;
 
@@ -40,17 +43,15 @@ public class PassInterviewCommand extends Command {
 
         Interview interviewToPass = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!model.isPassableInterview(interviewToPass)) {
-            throw new CommandException(Messages.MESSAGE_INTERVIEW_CANNOT_BE_PASSED);
+        if (!interviewToPass.isPassableInterview()) {
+            throw new CommandException(MESSAGE_INTERVIEW_CANNOT_BE_PASSED);
         }
 
-        // Should this be extracted out to a method
         Position oldPosition = interviewToPass.getPosition();
         Position newPosition = interviewToPass.getPosition().extendOffer();
         Interview passedInterview = new Interview(interviewToPass.getApplicant(), interviewToPass.getDate(),
                 newPosition);
 
-        // Should I change the constructor (of interview) or leave as a method instead
         passedInterview.markAsPassed();
         model.setInterview(interviewToPass, passedInterview);
         model.updatePosition(oldPosition, newPosition);

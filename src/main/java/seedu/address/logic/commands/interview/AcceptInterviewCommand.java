@@ -23,6 +23,7 @@ public class AcceptInterviewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ACCEPT_INTERVIEW_SUCCESS = "Accept Interview: %1$s";
+    public static final String MESSAGE_INTERVIEW_CANNOT_BE_ACCEPTED = "Only passed interviews can be accepted!";
 
     private final Index targetIndex;
 
@@ -34,30 +35,26 @@ public class AcceptInterviewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Interview> lastShownList = model.getFilteredInterviewList();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERVIEW_DISPLAYED_INDEX);
         }
 
         Interview interviewToAccept = lastShownList.get(targetIndex.getZeroBased());
-
-        if (!model.isAcceptableInterview(interviewToAccept)) {
-            throw new CommandException(Messages.MESSAGE_INTERVIEW_CANNOT_BE_ACCEPTED);
+        if (!interviewToAccept.isAcceptableInterview()) {
+            throw new CommandException(MESSAGE_INTERVIEW_CANNOT_BE_ACCEPTED);
         }
 
-        // Should this be extracted out to a method
         Position oldPosition = interviewToAccept.getPosition();
         Position newPosition = interviewToAccept.getPosition().acceptOffer();
-
         Applicant oldApplicant = interviewToAccept.getApplicant();
         Applicant newApplicant = interviewToAccept.getApplicant().setStatus(oldApplicant, newPosition);
-
         Interview acceptedInterview = new Interview(newApplicant, interviewToAccept.getDate(),
                 newPosition);
 
-        // Should I change the constructor (of interview) or leave as a method instead
+        // Interview has default status of "Pending", need to make it passed and then accepted
         acceptedInterview.markAsPassed();
         acceptedInterview.markAsAccepted();
+
         model.setInterview(interviewToAccept, acceptedInterview);
         model.updateApplicant(oldApplicant, newApplicant);
         model.updatePosition(oldPosition, newPosition);

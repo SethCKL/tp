@@ -42,7 +42,7 @@ public class Status {
      * Marks an interview as rejected only if status is passed.
      */
     public void markAsRejected() {
-        // Defensive programming to prevent acceptance before passing interview
+        // Defensive programming to prevent rejecting before passing interview
         if (!isPassedStatus()) {
             throw new RuntimeException("The Interview should be passed before its can be accepted by candidate");
         }
